@@ -1,4 +1,4 @@
-package s4.B183325; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID. 
+package s4.B183325; // Please modify to s4.Bnnnnnn, where nnnnnn is your student ID.
 import java.lang.*;
 import s4.specification.*;
 
@@ -13,7 +13,6 @@ interface FrequencerInterface {     // This interface provides the design for fr
     // get the frequency of subByte of taget, i.e target[start], taget[start+1], ... , target[end-1].
     // For the incorrect value of START or END, the behavior is undefined.
 */
-
 
 public class Frequencer implements FrequencerInterface{
     // Code to Test, *warning: This code  contains intentional problem*
@@ -36,9 +35,19 @@ public class Frequencer implements FrequencerInterface{
     }
 
     // I know that here is a potential problem in the declaration.
-    public int subByteFrequency(int start, int length) { 
+    public int subByteFrequency(int start, int length) {
 	// Not yet, but it is not currently used by anyone.
-	return -1;
+  int targetLength = myTarget.length;
+    	int spaceLength = mySpace.length;
+    	int count = 0;
+    	for(int place = start  ; place<length ; place++) { // Is it OK?
+    	    boolean abort = false;
+    	    for(int i = 0; i<targetLength; i++) {
+    		if(myTarget[i] != mySpace[place+i]) { abort = true; break; }
+    	    }
+    	    if(abort == false) { count++; }
+    	}
+    	return count;
     }
 
     public static void main(String[] args) {
@@ -57,5 +66,4 @@ public class Frequencer implements FrequencerInterface{
 	    System.out.println("Exception occurred: STOP");
 	}
     }
-}	    
-	    
+}
