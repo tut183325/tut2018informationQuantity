@@ -121,6 +121,9 @@ public class Frequencer implements FrequencerInterface{
   	// ****  Please write code here... ***
   	//
     for(int k=j; k<end; k++){
+      if(suffixArray[i]+k-j >= mySpace.length){
+        return -1;
+      }
       if(myTarget[k]!=mySpace[suffixArray[i]+k-j]){
         if(myTarget[k]<mySpace[suffixArray[i]+k-j]) return 1;
         else return -1;
