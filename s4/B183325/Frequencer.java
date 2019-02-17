@@ -140,11 +140,49 @@ public class Frequencer implements FrequencerInterface{
   	//
   	// ****  Please write code here... ***
   	//
+
+    /*
     for(int i=0; i<mySpace.length; i++){
       int result = targetCompare(i, start, end);
       if(result==0) return i;
     }
-  	return suffixArray.length; // This line should be modified.
+    */
+
+    int left=0;
+    int right=mySpace.length - 1;
+    int center = 0;
+
+    if(targetCompare(left, start, end) == 0) return left;
+
+    while(right - left > 1){
+      center = (left + right)/2;
+      if(targetCompare(center, start, end) >= 0) right = center;
+      else left = center;
+    }
+
+    return right;
+
+    // int left = 0, right = mySpace.length -1;
+    // do {
+    //   int center = (left + right) / 2;
+    //   switch (targetCompare(center, start, end)){
+    //     case  0 : {
+    //       if(targetCompare(center-1, start, end) == 0){
+    //         return center;
+    //       }else{
+    //         right = center - 1;
+    //       }
+    //     }
+    //     case  1 : {
+    //       if(right == left + 1) return suffixArray.length;
+    //       else left = center + 1;
+    //     }
+    //     case -1 : {
+    //       if(left == right + 1) return suffixArray.length;
+    //       else right = center - 1;
+    //     }
+    //   }
+    // }while(left <= right);s
   }
 
   private int subByteEndIndex(int start, int end) {
@@ -155,12 +193,47 @@ public class Frequencer implements FrequencerInterface{
   	//
   	// ****  Please write code here... ***
   	//
-    int start_i = subByteStartIndex(start, end);
-    for(int i=start_i; i<mySpace.length; i++){
-      int result = targetCompare(i, start, end);
-      if(result!=0) return i;
+
+
+    // int start_i = subByteStartIndex(start, end);
+    // for(int i=start_i; i<mySpace.length; i++){
+    //   int result = targetCompare(i, start, end);
+    //   if(result!=0) return i;
+    // }
+
+    int left=0;
+    int right=mySpace.length - 1;
+    int center = 0;
+
+    if(targetCompare(right, start, end) == 0) return suffixArray.length;
+
+    while(right - left > 1){
+      center = (left + right)/2;
+      if(targetCompare(center, start, end) <= 0) left = center;
+      else right = center;
     }
-  	return suffixArray.length; // This line should be modified.
+
+    return right;
+    // int left = 0, right = mySpace.length -1;
+    // do {
+    //   int center = (left + right) / 2;
+    //   switch (targetCompare(center, start, end)){
+    //     case  0 : {
+    //       if(targetCompare(center+1, start, end) == 0)return center + 1;
+    //       else left = center + 1;
+    //     }
+    //     case  1 : {
+    //       if(right == left + 1)return suffixArray.length;
+    //       else left = center + 1;
+    //     }
+    //     case -1 : {
+    //       if(left == right - 1)return suffixArray.length;
+    //       else right = center - 1;
+    //     }
+    //   }
+    // }while(left <= right);
+
+  	// return suffixArray.length; // This line should be modified.
   }
 
   public int subByteFrequency(int start, int end) {
